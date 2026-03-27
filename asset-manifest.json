@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/gift-envelope/static/css/main.c852ffe3.css",
-    "main.js": "/gift-envelope/static/js/main.c693f674.js",
+    "main.css": "/gift-envelope/static/css/main.9e769930.css",
+    "main.js": "/gift-envelope/static/js/main.b4f864f8.js",
     "static/js/453.f11b6404.chunk.js": "/gift-envelope/static/js/453.f11b6404.chunk.js",
     "index.html": "/gift-envelope/index.html",
-    "main.c852ffe3.css.map": "/gift-envelope/static/css/main.c852ffe3.css.map",
-    "main.c693f674.js.map": "/gift-envelope/static/js/main.c693f674.js.map",
+    "main.9e769930.css.map": "/gift-envelope/static/css/main.9e769930.css.map",
+    "main.b4f864f8.js.map": "/gift-envelope/static/js/main.b4f864f8.js.map",
     "453.f11b6404.chunk.js.map": "/gift-envelope/static/js/453.f11b6404.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c852ffe3.css",
-    "static/js/main.c693f674.js"
+    "static/css/main.9e769930.css",
+    "static/js/main.b4f864f8.js"
   ]
 }
