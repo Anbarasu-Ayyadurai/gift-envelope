@@ -2,7 +2,7 @@
   "name": "gift-envelope",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anbarasu123.github.io/gift-envelope",
+  "homepage": "https://anbarasu-ayyadurai.github.io/gift-envelope",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@testing-library/dom": "^10.4.1",
