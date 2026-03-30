@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useA11yStore } from "../core/useA11yStore";
+import { useA11yStore } from "../src/accessibility/core/useA11yStore";
 
-import "../styles/accessibility.css";
-import "../styles/widget.css";
-
+import "../src/accessibility/styles/accessibility.css";
+import "../src/accessibility/styles/widget.css";
 export default function AccessibilityWidget() {
 
   const {
@@ -145,19 +144,19 @@ export default function AccessibilityWidget() {
 
             <div className="a11y-group">
 
-  <p>Line Height</p>
+              <p>Line Height</p>
 
-  {[1, 2, 3].map((n) => (
-    <button
-      key={n}
-      className={state.lineHeight === n ? "active" : ""}
-      onClick={() => setLevel("lineHeight", n)}
-    >
-      {n === 1 ? "1.5x" : n === 2 ? "1.75x" : "2x"}
-    </button>
-  ))}
+              {[1, 2, 3].map((n) => (
+                <button
+                  key={n}
+                  className={state.lineHeight === n ? "active" : ""}
+                  onClick={() => setLevel("lineHeight", n)}
+                >
+                  {n === 1 ? "1.5x" : n === 2 ? "1.75x" : "2x"}
+                </button>
+              ))}
 
-</div>
+            </div>
 
 
             {/* ALIGN */}
@@ -207,6 +206,32 @@ export default function AccessibilityWidget() {
                 onClick={() => setMode("saturation", "desat")}
               >
                 Desat
+              </button>
+
+            </div>
+            <div className="a11y-group">
+
+              <p>Screen Reader</p>
+
+              <button
+                className={state.screenReader === "normal" ? "active" : ""}
+                onClick={() => setMode("screenReader", "normal")}
+              >
+                Normal
+              </button>
+
+              <button
+                className={state.screenReader === "slow" ? "active" : ""}
+                onClick={() => setMode("screenReader", "slow")}
+              >
+                Slow
+              </button>
+
+              <button
+                className={state.screenReader === "fast" ? "active" : ""}
+                onClick={() => setMode("screenReader", "fast")}
+              >
+                Fast
               </button>
 
             </div>
@@ -263,11 +288,11 @@ export default function AccessibilityWidget() {
 
 
             <div
-  className={`a11y-card ${state.font === "dyslexia" ? "active" : ""}`}
-  onClick={() => setMode("font", "dyslexia")}
->
-  Dyslexia Font
-</div>
+              className={`a11y-card ${state.font === "dyslexia" ? "active" : ""}`}
+              onClick={() => setMode("font", "dyslexia")}
+            >
+              Dyslexia Font
+            </div>
 
 
           </div>
