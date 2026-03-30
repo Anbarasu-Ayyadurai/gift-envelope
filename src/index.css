@@ -11,3 +11,604 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  margin: 0;
+  /* background: #d8d8fb; */
+  height: 100vh;
+}
+
+.envelope {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #7979aa;
+  width: 150px;
+  height: 90px;
+}
+
+/* keep ALL your existing CSS exactly same below */
+
+.cover {
+  position: relative;
+}
+
+.top,
+.side,
+.bottom {
+  position: absolute;
+  width: 150px;
+  z-index: 2;
+}
+
+.top {
+  cursor: pointer;
+}
+
+.top-cover {
+  height: 60px;
+  background: #7979aa;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.side {
+  height: 90px;
+}
+
+.left,
+.right {
+  position: absolute;
+  background: #5d5d93;
+  width: 75px;
+  height: 90px;
+}
+
+.left {
+  left: 0;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+}
+
+.right {
+  right: 0;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.bottom {
+  top: 45px;
+  height: 45px;
+  background: #555587;
+  clip-path: polygon(0 100%, 50% 0%, 100% 100%);
+}
+
+.paper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 180px;
+  background: #dadae7;
+  border-radius: 3px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.paper.show {
+  visibility: visible;
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  background: rgba(58, 58, 61, 0.62);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 250%);
+  height: 30px;
+  width: 160px;
+  border-radius: 50%;
+  background-image: radial-gradient(rgba(0, 0, 50, 0.3), rgba(250, 250, 250, 0));
+}
+
+/* =========================
+   ACTIVE BUTTON
+========================= */
+
+.a11y-group button.active {
+
+  background: #5b3b6f;
+  color: white;
+
+  box-shadow: 0 0 0 2px #c9a9db inset;
+
+}
+
+.a11y-card.active {
+
+  background: #5b3b6f;
+  color: white;
+
+}
+
+/* =========================
+   FLOAT BUTTON
+========================= */
+
+.a11y-float {
+
+  position: fixed;
+  right: 20px;
+  top: 100px;
+
+  z-index: 9999;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 12px;
+
+  background: #5b3b6f;
+  color: white;
+
+  border: none;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  transition: 0.2s;
+}
+
+.a11y-float:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* =========================
+   PANEL
+========================= */
+
+.a11y-container {
+
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  width: 360px;
+  height: 100%;
+
+  background: #f7f7f7;
+
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.25);
+
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: Arial, sans-serif;
+
+}
+
+
+
+/* =========================
+   HEADER
+========================= */
+
+.a11y-header {
+
+  background: #5b3b6f;
+  color: white;
+
+  padding: 14px;
+
+  font-weight: bold;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 16px;
+}
+
+.a11y-close {
+
+  cursor: pointer;
+  font-size: 18px;
+
+}
+
+
+
+/* =========================
+   GRID
+========================= */
+
+.a11y-grid {
+
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  overflow-y: auto;
+
+}
+
+
+
+/* =========================
+   GROUP
+========================= */
+
+.a11y-group {
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.a11y-group p {
+
+  margin: 0 0 6px 0;
+
+  font-size: 13px;
+  font-weight: bold;
+
+}
+
+
+
+/* =========================
+   BUTTON ROW
+========================= */
+
+.a11y-group button {
+
+  margin: 3px;
+
+  padding: 6px 8px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  background: #e5e5e5;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+
+}
+
+.a11y-group button:hover {
+
+  background: #d0c2db;
+
+}
+
+
+
+/* =========================
+   CARD (single toggle)
+========================= */
+
+.a11y-card {
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 12px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+  transition: 0.15s;
+
+}
+
+.a11y-card:hover {
+
+  background: #eee;
+
+}
+
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.a11y-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.a11y-container::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+  .a11y-container {
+    width: 100%;
+  }
+
+}
+
+/* =========================
+   CONTRAST MODES
+========================= */
+
+.a11y-contrast-invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.a11y-contrast-dark {
+  background: black !important;
+  color: yellow !important;
+}
+
+.a11y-contrast-dark a {
+  color: cyan !important;
+}
+
+.a11y-contrast-light {
+  background: white !important;
+  color: black !important;
+}
+
+
+
+/* =========================
+   HIGHLIGHT LINKS
+========================= */
+
+.a11y-links a {
+  text-decoration: underline !important;
+  outline: 2px solid red !important;
+}
+
+
+
+/* =========================
+   TEXT SIZE LEVELS
+========================= */
+
+.a11y-text-1 {
+  font-size: 110%;
+}
+
+.a11y-text-2 {
+  font-size: 120%;
+}
+
+.a11y-text-3 {
+  font-size: 130%;
+}
+
+.a11y-text-4 {
+  font-size: 150%;
+}
+
+
+
+/* =========================
+   TEXT SPACING LEVELS
+========================= */
+
+.a11y-spacing-1 {
+  letter-spacing: 1px;
+  word-spacing: 2px;
+}
+
+.a11y-spacing-2 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+}
+
+.a11y-spacing-3 {
+  letter-spacing: 3px;
+  word-spacing: 4px;
+}
+
+
+
+/* =========================
+   LINE HEIGHT
+========================= */
+
+.a11y-line-1 {
+  line-height: 1.5;
+}
+
+.a11y-line-2 {
+  line-height: 1.75;
+}
+
+.a11y-line-3 {
+  line-height: 2;
+}
+
+
+
+/* =========================
+   TEXT ALIGN
+========================= */
+
+.a11y-align-left {
+  text-align: left !important;
+}
+
+.a11y-align-center {
+  text-align: center !important;
+}
+
+.a11y-align-right {
+  text-align: right !important;
+}
+
+.a11y-align-justify {
+  text-align: justify !important;
+}
+
+
+
+/* =========================
+   FONT MODES
+========================= */
+
+.a11y-font-dyslexia {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.a11y-font-readable {
+  font-family: Verdana, Tahoma, sans-serif !important;
+}
+
+
+
+/* =========================
+   CURSOR MODES
+========================= */
+/* BIG CURSOR */
+.a11y-cursor-big,
+.a11y-cursor-big * {
+  cursor: pointer !important;
+}
+
+
+
+/* READING GUIDE (line follows mouse) */
+.a11y-guide-line {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: red;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+
+
+/* READING MASK */
+.a11y-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at center,
+      transparent 120px,
+      rgba(0, 0, 0, 0.6) 200px);
+  z-index: 999998;
+}
+
+/* =========================
+   SATURATION
+========================= */
+
+.a11y-sat-low {
+  filter: saturate(0.5);
+}
+
+.a11y-sat-high {
+  filter: saturate(2);
+}
+
+.a11y-sat-desat {
+  filter: grayscale(1);
+}
+
+
+
+/* =========================
+   BOOLEAN FEATURES
+========================= */
+
+.a11y-noanim * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.a11y-hideimg img {
+  display: none !important;
+}
+
+.a11y-tooltips [title] {
+  position: relative;
+}
+
+
+
+/* =========================
+   TOOLTIP STYLE
+========================= */
+
+.a11y-tooltips [title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 4px 6px;
+  font-size: 12px;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  z-index: 9999;
+}
+
+
+
+/* =========================
+   SAFETY FIX
+========================= */
+
+body[class*="a11y-"] img.a11y-icon {
+  display: inline !important;
+}
