@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <AccessibilityWidget />
-      <AccessibilityTestPage />
+      {/* <AccessibilityTestPage /> */}
       {/* <GiftEnvelope imageUrl="https://picsum.photos/300/200" /> */}
     </div>
   );
