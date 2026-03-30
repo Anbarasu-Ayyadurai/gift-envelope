@@ -3,7 +3,6 @@ import { useA11yStore } from "../src/accessibility/core/useA11yStore";
 
 import "../src/accessibility/styles/accessibility.css";
 import "../src/accessibility/styles/widget.css";
-
 export default function AccessibilityWidget() {
 
   const {
@@ -207,6 +206,32 @@ export default function AccessibilityWidget() {
                 onClick={() => setMode("saturation", "desat")}
               >
                 Desat
+              </button>
+
+            </div>
+            <div className="a11y-group">
+
+              <p>Screen Reader</p>
+
+              <button
+                className={state.screenReader === "normal" ? "active" : ""}
+                onClick={() => setMode("screenReader", "normal")}
+              >
+                Normal
+              </button>
+
+              <button
+                className={state.screenReader === "slow" ? "active" : ""}
+                onClick={() => setMode("screenReader", "slow")}
+              >
+                Slow
+              </button>
+
+              <button
+                className={state.screenReader === "fast" ? "active" : ""}
+                onClick={() => setMode("screenReader", "fast")}
+              >
+                Fast
               </button>
 
             </div>

@@ -2,31 +2,32 @@ import { useState, useEffect } from "react";
 
 export function useA11yStore() {
 
- const [state, setState] = useState({
+  const [state, setState] = useState({
 
-  contrast: "none",        // none | invert | dark | light
-  links: false,
+    contrast: "none",        // none | invert | dark | light
+    links: false,
 
-  textSize: 0,             // 0 1 2 3 4
+    textSize: 0,             // 0 1 2 3 4
 
-  spacing: 0,              // 0 1 2 3
+    spacing: 0,              // 0 1 2 3
 
-  noanim: false,
-  hideimg: false,
+    noanim: false,
+    hideimg: false,
 
-  font: "normal",          // normal | dyslexia | readable
+    font: "normal",          // normal | dyslexia | readable
 
-  cursor: "normal",        // normal | big | mask | guide
+    cursor: "normal",        // normal | big | mask | guide
 
-  tooltips: false,
+    tooltips: false,
 
-  lineHeight: 0,           // 0 1 2 3
+    lineHeight: 0,           // 0 1 2 3
 
-  align: "default",        // left right center justify
+    align: "default",        // left right center justify
 
-  saturation: "normal",    // normal low high desat
+    saturation: "normal",    // normal low high desat
+    screenReader: "off",     // off | normal | slow | fast
 
-});
+  });
 
   // Load saved settings
 
@@ -50,66 +51,79 @@ export function useA11yStore() {
       JSON.stringify(state)
     );
 
-    applyClasses(state);
+    const handleSpeak = (event) => {
+      const target = event.target;
+      let text = target.textContent?.trim() || target.alt || target.getAttribute('aria-label') || target.getAttribute('title') || 'element';
+      if (text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        let rate = 1;
+        if (state.screenReader === 'slow') rate = 0.5;
+        if (state.screenReader === 'fast') rate = 1.5;
+        utterance.rate = rate;
+        speechSynthesis.speak(utterance);
+      }
+    };
+
+    applyClasses(state, handleSpeak);
 
   }, [state]);
 
 
- const toggle = (key) => {
+  const toggle = (key) => {
 
-  setState((s) => ({
-    ...s,
-    [key]: !s[key],
-  }));
-
-};
-const setMode = (key, value) => {
-
-  setState((s) => {
-
-    const current = s[key];
-
-    return {
+    setState((s) => ({
       ...s,
-      [key]: current === value ? getDefault(key) : value,
-    };
+      [key]: !s[key],
+    }));
 
-  });
+  };
+  const setMode = (key, value) => {
 
-};
-// const setMode = (key, value) => {
+    setState((s) => {
 
-//   setState((s) => ({
+      const current = s[key];
 
-//     ...s,
+      return {
+        ...s,
+        [key]: current === value ? getDefault(key) : value,
+      };
 
-//     [key]: s[key] === value
-//       ? getDefault(key)
-//       : value,
+    });
 
-//   }));
+  };
+  // const setMode = (key, value) => {
 
-// };
-const setLevel = (key, level) => {
+  //   setState((s) => ({
 
-  setState((s) => ({
+  //     ...s,
 
-    ...s,
+  //     [key]: s[key] === value
+  //       ? getDefault(key)
+  //       : value,
 
-    [key]: s[key] === level
-      ? 0
-      : level,
+  //   }));
 
-  }));
+  // };
+  const setLevel = (key, level) => {
 
-};
+    setState((s) => ({
 
-return {
-  toggle,
-  setMode,
-  setLevel,
-  state,
-};
+      ...s,
+
+      [key]: s[key] === level
+        ? 0
+        : level,
+
+    }));
+
+  };
+
+  return {
+    toggle,
+    setMode,
+    setLevel,
+    state,
+  };
 
 }
 function getDefault(key) {
@@ -121,6 +135,7 @@ function getDefault(key) {
     cursor: "normal",
     align: "default",
     saturation: "normal",
+    screenReader: "off",
 
   };
 
@@ -128,14 +143,17 @@ function getDefault(key) {
 
 }
 
-function applyClasses(state) {
+function applyClasses(state, handleSpeak) {
+  window.a11yState = state;
 
   const body = document.body;
 
   // body.className = "";
-body.classList.remove(
-  ...Array.from(body.classList).filter(c => c.startsWith("a11y-"))
-);
+  body.classList.remove(
+    ...Array.from(body.classList).filter(c => c.startsWith("a11y-"))
+  );
+
+
 
   // boolean
 
@@ -168,7 +186,18 @@ body.classList.remove(
       "a11y-text-" + state.textSize
     );
   }
+  // =========================
+  // SCREEN READER (MULTI MODE)
+  // =========================
 
+  // cleanup first
+  document.body.removeEventListener("click", handleSpeak);
+
+  if (state.screenReader !== "off") {
+
+    document.body.addEventListener("click", handleSpeak);
+
+  }
 
   // spacing
 
@@ -189,9 +218,9 @@ body.classList.remove(
 
 
   // cursor
-// =========================
-// CURSOR MODES
-// =========================
+  // =========================
+  // CURSOR MODES
+  // =========================
 
   // Clean up previous cursor elements
   const existingGuide = document.querySelector('.a11y-guide-line');
@@ -266,6 +295,35 @@ body.classList.remove(
       "a11y-sat-" + state.saturation
     );
   }
+
+}
+function handleSpeak(e) {
+
+  const text = e.target.innerText?.trim();
+
+  if (!text) return;
+
+  const speech = new SpeechSynthesisUtterance(text);
+
+  // 🔥 MODE CONTROL
+  switch (window.a11yState?.screenReader) {
+
+    case "slow":
+      speech.rate = 0.7;
+      break;
+
+    case "fast":
+      speech.rate = 1.5;
+      break;
+
+    default:
+      speech.rate = 1;
+  }
+
+  speech.pitch = 1;
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(speech);
 
 }
 
