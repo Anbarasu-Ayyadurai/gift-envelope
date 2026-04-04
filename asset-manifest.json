@@ -1,13 +1,13 @@
 {
   "files": {
     "main.js": "/gift-envelope/widget.js",
-    "main.css": "/gift-envelope/static/css/main.09be6b8f.css",
+    "main.css": "/gift-envelope/static/css/main.2df54f90.css",
     "index.html": "/gift-envelope/index.html",
     "widget.js.map": "/gift-envelope/widget.js.map",
-    "main.09be6b8f.css.map": "/gift-envelope/static/css/main.09be6b8f.css.map"
+    "main.2df54f90.css.map": "/gift-envelope/static/css/main.2df54f90.css.map"
   },
   "entrypoints": [
     "widget.js",
-    "static/css/main.09be6b8f.css"
+    "static/css/main.2df54f90.css"
   ]
 }
