@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
-import GiftEnvelope from "./GiftEnvelope";
-import AccessibilityWidget from "./AccessibilityWidget";
-import AccessibilityTestPage from "./AccessibilityTestPage";
+import AccessibilityWidget from "./accessibility/ui/AccessibilityWidget";
 
 function App() {
   return (
